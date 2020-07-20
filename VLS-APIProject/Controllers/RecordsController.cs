@@ -69,8 +69,9 @@ namespace VLS_APIProject.Controllers
         }
 
 
+        [Route("UserRecord")]
         [HttpGet("{UserName}")]
-        public async Task<ActionResult<RecordModel[]>> Get(string userName)
+        public async Task<ActionResult<RecordModel[]>> Get([FromQuery]string userName)
         {
             try
             {

@@ -10,7 +10,7 @@ namespace VLS_APIProject.Data
     {
         public Task<Video[]> GetAllVideos();
 
-        public Task<Video> GetByVideoName(string VideoName);
+        public Task<Video[]> GetByVideoName(string VideoName);
 
         public Video GetVideosById(int videoId);
 

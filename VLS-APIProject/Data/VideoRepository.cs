@@ -27,13 +27,13 @@ namespace VLS_APIProject.Data
         }
 
 
-        public async Task<Video> GetByVideoName(string VideoName)
+        public async Task<Video[]> GetByVideoName(string VideoName)
         {
             IQueryable<Video> videoname = from vids in db.Videos
                             where vids.VideoName.StartsWith(VideoName) || string.IsNullOrEmpty(VideoName)
                             orderby vids.VideoName
                             select vids;
-            return await videoname.FirstOrDefaultAsync();
+            return await videoname.ToArrayAsync();
         }
 
 
