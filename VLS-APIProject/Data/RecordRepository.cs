@@ -34,7 +34,7 @@ namespace VLS_APIProject.Data
 
         public async Task<Record[]> GetRecordsByUserName(string UserName)
         {
-            IQueryable<Record> userRecord = from urecord in db.Records.Include("Video")
+            IQueryable<Record> userRecord = from urecord in db.Records.Include("Video").Include("User")
                                             where urecord.User.UserName.Equals(UserName)
                                             orderby urecord.IssueDate
                                             select urecord;

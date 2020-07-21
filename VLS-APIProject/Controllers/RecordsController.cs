@@ -87,7 +87,7 @@ namespace VLS_APIProject.Controllers
             }
         }
 
-
+        //[Route("addNewRecord")]
         [HttpPost]
         public async Task<ActionResult<RecordModel>> Post(RecordModel model)
         {
@@ -128,9 +128,9 @@ namespace VLS_APIProject.Controllers
 
 
 
-
+        [Route("deleteRec")]
         [HttpDelete("{RecordId:int}")]
-        public async Task<IActionResult> Delete(int recordId)
+        public async Task<IActionResult> Delete([FromQuery]int recordId)
         {
             try
             {

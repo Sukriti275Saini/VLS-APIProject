@@ -17,8 +17,8 @@ namespace VLS_APIProject.Models
         [Required]
         public Video Video { get; set; }
 
-        public DateTime IssueDate { get; set; }
+        public DateTime IssueDate { get; set; } = DateTime.Now;
 
-        public DateTime ReturnDate { get; set; }
+        public DateTime ReturnDate { get; set; } = DateTime.Now.AddDays(15);
     }
 }
