@@ -91,17 +91,20 @@ namespace VLS_APIProject.Data
 
         }
 
-        public string Add(User newUser)
+        public UserResponseModel Add(User newUser)
         {
             var checkusername = from usr in db.Users
                                 where usr.UserName.Equals(newUser.UserName)
                                 select usr;
             if (checkusername.Count() > 0)
             {
-                return "User Name Already Exists";
+                return null;
             }
             db.Add(newUser);
-            return "Added";
+
+            var token = generateJwtToken(newUser);
+
+            return new UserResponseModel(newUser, token);
         }
 
         public User Delete(string UserName)

@@ -30,7 +30,7 @@ namespace VLS_APIProject.Controllers
             this.linkGenerator = linkGenerator;
         }
 
-        
+        //[AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<UserModel[]>> Get()
         {
@@ -45,7 +45,7 @@ namespace VLS_APIProject.Controllers
             }
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [Route("GetUser")]
         [HttpGet("{UserName}")]
         public ActionResult<UserModel> Get([FromQuery] string UserName)
@@ -67,7 +67,7 @@ namespace VLS_APIProject.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<UserModel>> PostRegisterUser([FromBody]UserModel model)
+        public async Task<ActionResult<UserModel>> PostRegisterUser(UserModel model)
         {
             try
             {
@@ -76,15 +76,17 @@ namespace VLS_APIProject.Controllers
 
                 var newuser = mapper.Map<User>(model);
 
-                repository.Add(newuser);
+                var response = repository.Add(newuser);
 
                 if (await repository.SaveChangesAsync())
                 {
+                    //
                     var url = linkGenerator.GetPathByAction(HttpContext,
                         "Get",
                         values: new { UserName = model.UserName });
 
-                    return Created(url, mapper.Map<UserModel>(newuser));
+                    //
+                    return Ok(response);
                 }
             }
             catch (Exception)

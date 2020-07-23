@@ -18,7 +18,7 @@ namespace VLS_APIProject.Data
 
         public string LoginUser(string username, string Password);
 
-        public string Add(User newUser);
+        public UserResponseModel Add(User newUser);
 
         public User Delete(string UserName);
 
